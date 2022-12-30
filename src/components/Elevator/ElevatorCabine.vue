@@ -42,15 +42,19 @@ export default {
     elevators: Array,
   },
   methods: {
+    // высчитываем высоту кабины лифта
     heightElevatorCabine() {
       return 100 / this.floors;
     },
 
+    // вызов лифта (происходит при нажатии кнопки вызова)
     callElevator(floor) {
       if (!this.queueFloor.includes(floor)) this.queueFloor.push(floor);
       if (this.currentState == elevatorStates.WAIT) this.start();
       this.$emit("addActive", floor);
     },
+
+    // движение лифта вверх
     async moveUp() {
       return new Promise((r) => {
         setTimeout(r, TIME_MOVING_BETWEEN_FLOOR);
@@ -60,6 +64,8 @@ export default {
         this.bottom = this.bottom + this.heightElevatorCabine();
       });
     },
+
+    // движение лифта вниз
     async moveDown() {
       return new Promise((r) => {
         setTimeout(r, TIME_MOVING_BETWEEN_FLOOR);
@@ -69,6 +75,7 @@ export default {
         this.bottom = this.bottom - this.heightElevatorCabine();
       });
     },
+    // остановка лифта
     async stop() {
       return new Promise((r) => {
         this.currentDirection = movingStates.STAND;
@@ -79,6 +86,8 @@ export default {
         setTimeout(r, TIME_STAND_ON_FLOOR);
       });
     },
+
+    // старт лифта
     async start() {
       this.currentState = elevatorStates.MOVING;
       let callFloor;
@@ -97,13 +106,8 @@ export default {
       this.currentState = elevatorStates.WAIT;
     },
   },
-  computed: {},
-  watch: {
-    currentPage(page) {
-      this.loadUsers(page);
-    },
-  },
   created() {
+    // на будущее если будет несколько лифтов - массив лифтов
     this.elevatorsArray.push(this);
   },
   mounted() {

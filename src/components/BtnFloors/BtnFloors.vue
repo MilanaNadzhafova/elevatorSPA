@@ -27,15 +27,19 @@ export default {
     removeIsActive: Number,
   },
   methods: {
+    //вызов лифта, передача нужного этажа
     callActive() {
       this.$emit("callElevator", this.floor + 1);
       this.btnFloorActive();
     },
+    //активность кнопок (добавление удаление класса)
     btnFloorActive() {
       this.$emit("floorActive", this.floor + 1);
     },
   },
   watch: {
+    //добавление удаление класса активности кнопок
+
     addIsActive() {
       if (this.addIsActive == this.floor + 1) {
         this.isActive = true;

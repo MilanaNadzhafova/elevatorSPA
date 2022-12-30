@@ -1,9 +1,14 @@
 @import "./variabless.scss";
 
+html,
+body,
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+body {
+  background-color: rgb(255, 233, 233);
 }
 
 .flex {

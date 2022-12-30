@@ -47,23 +47,26 @@ export default {
     };
   },
   methods: {
+    // высота строчки этажа
     heightRow() {
       return 100 / this.floors + "%";
     },
+
+    // вызов лифта
     callElevator(floor) {
       this.elevators[0].callElevator(floor);
     },
+
+    //для активности кнопок
+
     floorActive(floor) {
       this.floor = floor;
-      console.log("floor");
     },
     addActive(floor) {
       this.addIsActive = floor;
-      console.log("add", this.addIsActive);
     },
     removeActive(floor) {
       this.removeIsActive = floor;
-      console.log("remove");
     },
   },
 };
