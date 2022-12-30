@@ -47,7 +47,9 @@ export default {
     },
     removeIsActive() {
       if (this.removeIsActive == this.floor + 1) {
-        this.isActive = false;
+        setTimeout(() => {
+          this.isActive = false;
+        }, 3000);
       }
     },
   },

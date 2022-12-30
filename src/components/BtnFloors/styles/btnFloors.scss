@@ -13,29 +13,16 @@
 
     cursor: pointer;
 
-    // @keyframes back {
-    //   from {
-    //     background-color: orange;
-    //   }
-
-    //   to {
-    //     background-color: black;
-    //   }
-    // }
-
-    // @keyframes border {
-    //   from {
-    //     border-color: orange;
-    //   }
-
-    //   to {
-    //     border-color: black;
-    //   }
-    // }
-
     &.active {
-      border-color: orange;
-      background-color: orange;
+      animation: border 1s linear infinite;
+
+      &::after {
+        animation: border 1s linear infinite;
+      }
+
+      &::before {
+        animation: back 1s linear infinite;
+      }
     }
 
     &::before {
@@ -62,6 +49,26 @@
 
       width: 15px;
       height: 15px;
+    }
+
+    @keyframes back {
+      from {
+        background-color: orange;
+      }
+
+      to {
+        background-color: black;
+      }
+    }
+
+    @keyframes border {
+      from {
+        border-color: orange;
+      }
+
+      to {
+        border-color: black;
+      }
     }
   }
 }

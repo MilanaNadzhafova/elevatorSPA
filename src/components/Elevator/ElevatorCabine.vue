@@ -12,8 +12,10 @@
 <script>
 let elevatorStates = { MOVING: 1, WAIT: 2 },
   movingStates = { UP: 1, DOWN: 2, STAND: 3 };
+//количество секунд, которое лифт едет между этажами
 const TIME_MOVING_BETWEEN_FLOOR = 1000; //ms
-const TIME_STAND_ON_FLOOR = 1000; //ms
+//количество секунд, которое лифт стоит на этаже
+const TIME_STAND_ON_FLOOR = 3000; //ms
 
 export default {
   name: "ElevatorCabine",
@@ -39,6 +41,7 @@ export default {
       type: Number,
       default: 5,
     },
+
     elevators: Array,
   },
   methods: {
@@ -82,8 +85,9 @@ export default {
         this.information = this.currentFloor;
         let floorIndex = this.queueFloor.indexOf(this.currentFloor);
         if (floorIndex !== -1) this.queueFloor.splice(floorIndex, 1);
-        this.$emit("removeActive", this.currentFloor);
         setTimeout(r, TIME_STAND_ON_FLOOR);
+
+        this.$emit("removeActive", this.currentFloor);
       });
     },
 
@@ -95,6 +99,8 @@ export default {
         callFloor = this.queueFloor[0];
         while (this.currentFloor != callFloor) {
           if (this.queueFloor.includes(this.currentFloor)) {
+            this.$emit("addActive", this.currentFloor);
+
             await this.stop();
           }
           if (this.currentFloor < callFloor) await this.moveUp();
