@@ -1,11 +1,13 @@
 <template>
-  <div id="app">всем привет!</div>
+  <div id="app"><home-for-elevators /></div>
 </template>
 
 <script>
+import HomeForElevators from "./components/Home/HomeForElevators.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: { HomeForElevators },
 };
 </script>
 

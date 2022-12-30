@@ -1,0 +1,33 @@
+.elevator {
+  width: 200px;
+  border-right: 2px solid orange;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  &__cabine {
+    background-color: orange;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20%;
+    max-width: 100%;
+    transition: bottom 1s linear 0s;
+  }
+
+  &__info {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 40%;
+    min-height: 20px;
+    padding: 5px 0;
+    font-size: 14px;
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 5px;
+    color: white;
+  }
+}
